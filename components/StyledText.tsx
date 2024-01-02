@@ -1,5 +1,5 @@
-import { Text, TextProps } from "./Themed";
+import { Text } from "react-native";
 
-export function PixelifyText(props: TextProps) {
+export function PixelifyText(props: any) {
   return <Text {...props} style={[props.style, { fontFamily: "Pixelify" }]} />;
 }
