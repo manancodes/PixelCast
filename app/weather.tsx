@@ -79,11 +79,13 @@ const WeatherScreen = () => {
         <>
           <View style={styles.navBar}>
             <PixelifyText style={styles.navText}>
-              {weather.weather[0].main}
+              {weather.weather.length > 0 && weather.weather[0].main}
             </PixelifyText>
           </View>
           <View style={styles.centerContainer}>
-            <WeatherIcon condition={weather.weather[0].main} />
+            {weather.weather.length > 0 && (
+              <WeatherIcon condition={weather.weather[0].main} />
+            )}
           </View>
           <View style={styles.detailsContainer}>
             <Text style={styles.city}>{weather.name}</Text>
