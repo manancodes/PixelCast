@@ -75,17 +75,15 @@ const WeatherScreen = () => {
 
   return (
     <View style={styles.container}>
-      {weather ? (
+      {weather && weather.main && weather.weather[0] ? (
         <>
           <View style={styles.navBar}>
             <PixelifyText style={styles.navText}>
-              {weather.weather?.[0]?.main ?? "N/A"}
+              {weather.weather[0].main}
             </PixelifyText>
           </View>
           <View style={styles.centerContainer}>
-            {weather.weather?.[0] && (
-              <WeatherIcon condition={weather.weather[0].main} />
-            )}
+            <WeatherIcon condition={weather.weather[0].main} />
           </View>
           <View style={styles.detailsContainer}>
             <Text style={styles.city}>{weather.name}</Text>
