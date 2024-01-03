@@ -7,6 +7,7 @@ import {
   requestForegroundPermissionsAsync,
   getCurrentPositionAsync,
 } from "expo-location";
+import get from "lodash/get";
 
 import { PixelifyText } from "../components/StyledText";
 import WeatherIcon from "../components/Weather/WeatherIcon";
@@ -75,23 +76,25 @@ const WeatherScreen = () => {
 
   return (
     <View style={styles.container}>
-      {weather && weather.main && weather.weather[0] ? (
+      {weather ? (
         <>
           <View style={styles.navBar}>
             <PixelifyText style={styles.navText}>
-              {weather.weather[0].main}
+              {get(weather, "weather[0].main", "Check Outside")}
             </PixelifyText>
           </View>
           <View style={styles.centerContainer}>
-            <WeatherIcon condition={weather.weather[0].main} />
+            <WeatherIcon
+              condition={get(weather, "weather[0].main", "Check Outside")}
+            />
           </View>
           <View style={styles.detailsContainer}>
-            <Text style={styles.city}>{weather.name}</Text>
+            <Text style={styles.city}>{get(weather, "name", "Las Vegas")}</Text>
             <PixelifyText style={styles.temperature}>
-              {weather.main.temp}°C
+              {get(weather, "main.temp", "20")}°C
             </PixelifyText>
             <Text style={styles.city}>
-              Feels like {weather.main.feels_like}°C
+              Feels like {get(weather, "main.feels_like", "20")}°C
             </Text>
           </View>
         </>
